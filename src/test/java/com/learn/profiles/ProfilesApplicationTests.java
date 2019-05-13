@@ -1,4 +1,4 @@
-package com.learn.Profiles;
+package com.learn.profiles;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

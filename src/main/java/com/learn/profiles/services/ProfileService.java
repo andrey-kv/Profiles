@@ -1,10 +1,15 @@
-package com.learn.Profiles.services;
+package com.learn.profiles.services;
 
-import com.learn.Profiles.models.Profile;
+import com.learn.profiles.models.Profile;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProfileService {
+
+    @Autowired
+    ApplicationContext context;
 
     public Profile update(Profile base, Profile update) {
         if (update.getFirstName() != null) {
@@ -17,7 +22,9 @@ public class ProfileService {
             base.setEmail(update.getEmail());
         }
         if (update.getPhone() != null) {
-            base.setPhone(update.getPhone());
+
+            PhoneFormatter formatter = context.getBean(PhoneFormatter.class);
+            base.setPhone(formatter.format(update.getPhone()));
         }
         if (update.getLocation() != null) {
             base.setLocation(update.getLocation());

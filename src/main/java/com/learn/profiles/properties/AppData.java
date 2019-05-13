@@ -1,4 +1,4 @@
-package com.learn.Profiles.properties;
+package com.learn.profiles.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

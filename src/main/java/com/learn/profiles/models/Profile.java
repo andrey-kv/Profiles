@@ -1,4 +1,4 @@
-package com.learn.Profiles.models;
+package com.learn.profiles.models;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;

@@ -1,4 +1,4 @@
-package com.learn.Profiles;
+package com.learn.profiles;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

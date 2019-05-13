@@ -1,8 +1,9 @@
-package com.learn.Profiles.controllers;
+package com.learn.profiles.controllers;
 
-import com.learn.Profiles.models.Profile;
-import com.learn.Profiles.repositories.ProfileRepository;
-import com.learn.Profiles.services.ProfileService;
+import com.learn.profiles.models.Profile;
+import com.learn.profiles.repositories.ProfileRepository;
+import com.learn.profiles.services.PhoneFormatter;
+import com.learn.profiles.services.ProfileService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,9 @@ public class ProfileController {
 
     @Autowired
     private ProfileService profileService;
+
+    @Autowired
+    private PhoneFormatter phoneFormatter;
 
     @GetMapping
     public List<Profile> getAllProfiles() {
@@ -49,6 +53,11 @@ public class ProfileController {
     public Profile createProfile(@Valid @RequestBody Profile profile) {
         log.info("Posted: " + profile.toString());
         profile.set_id(ObjectId.get());
+
+        if (profile.getPhone() != null && !profile.getPhone().isEmpty()) {
+            profile.setPhone(phoneFormatter.format(profile.getPhone()));
+        }
+
         repository.save(profile);
         return profile;
     }

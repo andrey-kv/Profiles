@@ -1,6 +1,6 @@
-package com.learn.Profiles.services;
+package com.learn.profiles.services;
 
-import com.learn.Profiles.properties.AppData;
+import com.learn.profiles.properties.AppData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

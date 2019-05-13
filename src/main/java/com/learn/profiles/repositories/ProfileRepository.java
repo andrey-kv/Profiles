@@ -1,6 +1,6 @@
-package com.learn.Profiles.repositories;
+package com.learn.profiles.repositories;
 
-import com.learn.Profiles.models.Profile;
+import com.learn.profiles.models.Profile;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
