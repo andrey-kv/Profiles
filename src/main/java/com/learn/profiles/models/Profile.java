@@ -1,5 +1,6 @@
 package com.learn.profiles.models;
 
+import com.learn.profiles.services.Location;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
@@ -12,9 +13,9 @@ public class Profile {
     public String secondName;
     public String email;
     public String phone;
-    public String location;
+    public Location location;
 
-    public Profile(ObjectId _id, String firstName, String secondName, String email, String phone, String location) {
+    public Profile(ObjectId _id, String firstName, String secondName, String email, String phone, Location location) {
         this._id = _id;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -63,11 +64,11 @@ public class Profile {
         this.phone = phone;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(Location location) {
         this.location = location;
     }
 
@@ -79,7 +80,7 @@ public class Profile {
                 ", secondName='" + secondName + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", location='" + location + '\'' +
+                ", location='" + location.toString() + '\'' +
                 '}';
     }
 

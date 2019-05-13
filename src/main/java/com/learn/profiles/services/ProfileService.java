@@ -2,6 +2,7 @@ package com.learn.profiles.services;
 
 import com.learn.profiles.models.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,11 @@ public class ProfileService {
 
     @Autowired
     ApplicationContext context;
+
+    @Autowired
+    @Qualifier("polFormatter")
+    PhoneFormatter secondFormatter;
+
 
     public Profile update(Profile base, Profile update) {
         if (update.getFirstName() != null) {
@@ -23,8 +29,14 @@ public class ProfileService {
         }
         if (update.getPhone() != null) {
 
-            PhoneFormatter formatter = context.getBean(PhoneFormatter.class);
-            base.setPhone(formatter.format(update.getPhone()));
+            // Using bean class to choose implementation
+            PhoneFormatter formatter = context.getBean("blrFormatter", PhoneFormatter.class);
+            String number = formatter.format(update.getPhone());
+
+            if (number.equals(update.getPhone())) {
+                number = secondFormatter.format(number);
+            }
+            base.setPhone(number);
         }
         if (update.getLocation() != null) {
             base.setLocation(update.getLocation());

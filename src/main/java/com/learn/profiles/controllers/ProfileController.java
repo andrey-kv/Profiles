@@ -6,6 +6,7 @@ import com.learn.profiles.services.PhoneFormatter;
 import com.learn.profiles.services.ProfileService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,15 +22,15 @@ public class ProfileController {
     private static final Logger log = LoggerFactory.getLogger(ProfileController.class);
 
     @Autowired
+    ApplicationContext context;
+
+    @Autowired
     private ProfileRepository repository;
 
     @Autowired
     private ProfileService profileService;
 
-    @Autowired
-    private PhoneFormatter phoneFormatter;
-
-    @GetMapping
+   @GetMapping
     public List<Profile> getAllProfiles() {
         List<Profile> result = repository.findAll();
         log.info("Got all: Found " + result.size() + " record(s)");
@@ -55,6 +56,10 @@ public class ProfileController {
         profile.set_id(ObjectId.get());
 
         if (profile.getPhone() != null && !profile.getPhone().isEmpty()) {
+
+            // Using @Primary to choose implementation
+            PhoneFormatter phoneFormatter = context.getBean(PhoneFormatter.class);
+
             profile.setPhone(phoneFormatter.format(profile.getPhone()));
         }
 

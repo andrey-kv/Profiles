@@ -4,13 +4,14 @@ import com.learn.profiles.services.PhoneFormatter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UkrPhoneFormatter implements PhoneFormatter {
+public class BlrPhoneFormatter implements PhoneFormatter {
 
     @Override
     public String format(String phoneNumber) {
-        if (phoneNumber.startsWith("0")) {
-            phoneNumber = "+38" + phoneNumber;
+        if (!phoneNumber.startsWith("0") && phoneNumber.length() == 9) {
+            phoneNumber = "+375" + phoneNumber;
         }
         return phoneNumber;
     }
 }
+
