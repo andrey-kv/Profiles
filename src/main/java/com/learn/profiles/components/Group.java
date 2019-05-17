@@ -6,10 +6,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class Group {
 
+    @Autowired
     private Person headOfGroup;
 
-    @Autowired
-    public void setHeadOfGroup(Person headOfGroup) {
-        this.headOfGroup = headOfGroup;
+
+    public Person getHeadOfGroup() {
+        return headOfGroup;
     }
 }

@@ -9,17 +9,18 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PropertiesCheker {
+public class PropertiesChecker {
 
-    private static final Logger log = LoggerFactory.getLogger(PropertiesCheker.class);
+    private static final Logger log = LoggerFactory.getLogger(PropertiesChecker.class);
 
     @Autowired
     private AppData appData;
 
     @EventListener(ApplicationReadyEvent.class)
     private void read() {
-        log.info("Read custom application properties:");
+        log.info("========= Read custom application properties =========");
         log.info("FirstName = " + appData.getFirstName());
         log.info("SecondName = " + appData.getSecondName());
     }
+
 }
