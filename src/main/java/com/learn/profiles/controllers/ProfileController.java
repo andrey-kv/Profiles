@@ -22,7 +22,7 @@ public class ProfileController {
     private static final Logger log = LoggerFactory.getLogger(ProfileController.class);
 
     @Autowired
-    ApplicationContext context;
+    PhoneFormatter phoneFormatter;
 
     @Autowired
     private ProfileRepository repository;
@@ -56,10 +56,6 @@ public class ProfileController {
         profile.set_id(ObjectId.get());
 
         if (profile.getPhone() != null && !profile.getPhone().isEmpty()) {
-
-            // Using @Primary to choose implementation
-            PhoneFormatter phoneFormatter = context.getBean(PhoneFormatter.class);
-
             profile.setPhone(phoneFormatter.format(profile.getPhone()));
         }
 
