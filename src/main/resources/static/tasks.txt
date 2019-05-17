@@ -1,0 +1,54 @@
+Task #1
+Create two Bean with cyclic dependencies. Resolve  problem of cyclic dependencies
+
+Task #2
+1. Create interface with 2 implementations
+2. Create Controller(or service) that uses one of these implementation. Choose implementation by each of approaches: 
+	Use the bean class
+	Use @Primary 
+	Use a custom qualifier annotation
+	Use the @Qualifier annotation
+	Use @Profile
+	
+Task #3
+1. Create one singleton bean and one prototype
+2. Inject prototype into singleton
+3. Resolve problem with creating brandly new instance of prototype using different approaches (implement 2-3 approaches)
+
+Task #4
+1. Create Bean (using @Bean annotation) from class marked as @Configuration and marked as @Component. Discover the dependencies of these approaches
+
+
+Task #5
+1. Create custom annotations (for example, @Development, @Production, @Test) based on @Profile as a meta-annotation
+@Profile("dev") == @Dev
+2. Apply it for your application
+
+Task #6
+1. Use actuators
+2. Create custom actuator's endpoint with info about application (name, version, profile)
+
+Task #7
+1. Create cache (for example for languages and locations)
+2. Populate cache when context is started
+3. Implement cache update
+
+
+Task #8
+
+
+ @Configuration
+public class CustomConfig {
+    @Bean("bean")
+    public Bean bean() {
+       return ...
+    }
+	}
+
+@Component
+public class CustomConfig {
+    @Bean("bean")
+    public BeanTest bean() {
+       return ...
+    }
+	}

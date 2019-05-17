@@ -17,22 +17,26 @@ public class BeanChecker {
 
     private Person firstPerson;
 
+    // Inject @Primary bean by constructor
     @Autowired
     public BeanChecker(Person firstPerson) {
         log.info("========= BeanChecker constructor =========");
         this.firstPerson = firstPerson;
+        log.info("Bean name = " + firstPerson.getName());
     }
 
+    // Inject bean with @Qualifier
     @Autowired
     @Qualifier("worker")
     private Person secondPerson;
 
+    // Inject bean with custom annotation
     @Autowired
     @Engeneer
     private Person thirdPerson;
 
     @EventListener(ApplicationReadyEvent.class)
-    private void doSomeActions() {
+    private void doCheck() {
         log.info("========= Testing beans =========");
         log.info(firstPerson.getName());
         log.info(secondPerson.getName());
