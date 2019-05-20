@@ -35,6 +35,15 @@ public class BeanChecker {
     @Engeneer
     private Person thirdPerson;
 
+    // Inject bean by profile
+    @Autowired
+    @Qualifier("profileInfo")
+    private String profileInfo;
+
+    @Autowired
+    @Qualifier("beanString")
+    private String beanString;
+
     @EventListener(ApplicationReadyEvent.class)
     private void doCheck() {
         log.info("========= Testing beans =========");
@@ -47,6 +56,12 @@ public class BeanChecker {
         log.info("Group of thirdPerson = " + thirdPerson.getGroup().toString());
 
         log.info("Head of Group = " + thirdPerson.getGroup().getHeadOfGroup().getName());
+
+        log.info("========= Profile info =========");
+        log.info("Active profile = " + profileInfo);
+
+        log.info(beanString);
+
     }
 
 }
