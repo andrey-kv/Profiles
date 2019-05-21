@@ -1,6 +1,7 @@
 package com.learn.profiles.services;
 
 import com.learn.profiles.annotations.Engeneer;
+import com.learn.profiles.components.Group;
 import com.learn.profiles.components.Person;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,6 +45,10 @@ public class BeanChecker {
     @Qualifier("beanString")
     private String beanString;
 
+    // Inject bean by type
+    @Autowired
+    private Group group;
+
     @EventListener(ApplicationReadyEvent.class)
     private void doCheck() {
         log.info("========= Testing beans =========");
@@ -55,13 +60,15 @@ public class BeanChecker {
         log.info("Group of secondPerson = " + secondPerson.getGroup().toString());
         log.info("Group of thirdPerson = " + thirdPerson.getGroup().toString());
 
+        log.info("Group worker #1 = " + group.getWorker().toString());
+        log.info("Group worker #2 = " + group.getWorker().toString());
+
         log.info("Head of Group = " + thirdPerson.getGroup().getHeadOfGroup().getName());
 
         log.info("========= Profile info =========");
         log.info("Active profile = " + profileInfo);
 
         log.info(beanString);
-
     }
 
 }
